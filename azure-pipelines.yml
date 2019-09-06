@@ -4,24 +4,13 @@
 # https://aka.ms/yaml
 
 trigger:
-  tags:
-    include:
-    - v*
-  branches:
-    include:
-    - refs/tags/v*
-    exclude:
-    - refs/heads/*
-    - refs/remotes/*
+  feature/JIRA-1
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: PowerShell@2
+  inputs:
+    filePath: './hello.ps1'
+    arguments: '-greeter "$(Build.RequestedFor)" -trigger "$(Build.QueuedBy)" '
