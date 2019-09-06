@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-  feature/JIRA-1
+  features/JIRA-1
 
 pool:
   vmImage: 'ubuntu-latest'
